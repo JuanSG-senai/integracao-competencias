@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "juan123",
+      "age": "16",
+      "password": "xyz"
+    },
+    {
+      "id": 2,
+      "username": "juan123",
+      "age": "16",
+      "password": "xyz"
+    },
+    {
+      "id": 3,
+      "username": "juan123",
+      "age": "16",
+      "password": "xyz"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ]
+}

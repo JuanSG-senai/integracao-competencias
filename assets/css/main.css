@@ -5,7 +5,7 @@
 
 /* DEFININDO ÁREAS DE CADASTRO E LOGIN */
 
-main {
+section {
     display: flex;
     justify-content: center;
     margin-top: 20px;
