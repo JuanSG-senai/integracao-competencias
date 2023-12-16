@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* DEFININDO ÁREAS DE CADASTRO E LOGIN */
+
+main {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.sigInLogIn {
+    width: 95%;
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 5px;
+    background-color: dodgerblue;
+    border-radius: 10px;
+}
+
+.sigInLogInArea {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 5px;
+}
+
+.sigInLogInButton {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: slategray;
+    padding: 5px
+}
