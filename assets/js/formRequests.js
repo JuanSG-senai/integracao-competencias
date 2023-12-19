@@ -24,7 +24,7 @@ export const getAllUsers = async () => {
         const response = await fetch(URL+'users');
         return await response.json();
     } catch (error) {
-        console.log('Erro: ', error);
+        alert('Erro: ' + error);
     }
 };
 
@@ -35,8 +35,8 @@ export const createUser = async (user) => {
         body: JSON.stringify(user)
     })
     .then(response => response.json())
-    .then(data => console.log('Sucesso: ', data))
-    .catch((error) => console.log('Erro: ', error));
+    .then(data => alert('Seu id é: ' + data.id + '\n\nGuarde seu id em um lugar em que não será perdido. A página será recarregada, após isso entre com seu id e senha.'))
+    .catch((error) => alert('Erro: ' + error));
 };
 
 // REQUISIÇÕES DE ORGANIZAÇÕES
@@ -46,6 +46,6 @@ export const getAllOrganizations = async () => {
         const response = await fetch(URL+'organizations');
         return await response.json();
     } catch (error) {
-        console.log('Erro: ', error);
+        console.log('Erro: ' + error);
     }
 };

@@ -17,26 +17,21 @@ export const userSignUpForm = () => {
 
     <button id="submit" type="submit">confirmar</button>
     `;
-    const name = document.getElementById('name').value;
-    const age = document.getElementById('age').value;
-    const password = document.getElementById('password').value;
-
     document.getElementById('submit').onclick = () => {
-        alert(name, age, password);
+        const name = document.getElementById('name').value;
+        const age = document.getElementById('age').value;
+        const password = document.getElementById('password').value;
+
         if (name !== '' && age !== '' && password !== '') {
+            event.preventDefault();
             const user = {
                 "username": `${name}`,
                 "age": `${age}`,
                 "password": `${password}`
             };
-        
+
             createUser(user);
-    
-            getAllUsers().then(resp => {
-                alert('Seu id é: ' + resp.length + '\n\nGuarde-o ou escreva-o em algum lugar em que não será perdido!\nA página será recarregada, após isso entre com seu id e senha.');
-            });
-    
-            location.reload();
+
         } else {
             formError();
         }

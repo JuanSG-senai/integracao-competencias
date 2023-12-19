@@ -2,12 +2,10 @@ import { userSignUpForm, userLogInForm, organizationSignUpForm, organizationLogI
 
 if (localStorage.getItem('userType') == 'simple user') {
 
-    document.getElementById('switchForm').style.display = 'none';
     document.getElementById('dynamicForm').style.display = 'none';    
 
 } else if (localStorage.getItem('userType') == 'organization') {
 
-    document.getElementById('switchForm').style.display = 'none';
     document.getElementById('dynamicForm').style.display = 'none';
 
 } else {
