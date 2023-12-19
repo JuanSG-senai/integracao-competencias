@@ -1,4 +1,4 @@
-import { userSignUpForm, userLogInForm, organizationSignUpForm, organizationLogInForm } from './dynamicForm.js';
+import { userSignUpForm, userLogInForm, organizationSignUpForm, organizationLogInForm } from './dynamic-form.js';
 
 if (localStorage.getItem('userType') == 'simple user') {
 

@@ -1,5 +1,5 @@
 import { formError } from "./exceptions.js";
-import { getAllUsers, getAllOrganizations, createUser } from "./formRequests.js";
+import { getAllUsers, getAllOrganizations, createUser } from "./form-requests.js";
 
 const formulario = document.getElementById('dynamicForm');
 
