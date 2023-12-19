@@ -46,6 +46,13 @@
       "eventType": "Feira",
       "location": "Rua Mendes Sá 38, Rio de Janeiro - RJ",
       "password": "123"
+    },
+    {
+      "name": "Top Eventos",
+      "eventType": "Conferência",
+      "location": "Rua Azevedo Motta 47, Rio de Janeiro - RJ.",
+      "password": "1234",
+      "id": 4
     }
   ]
 }

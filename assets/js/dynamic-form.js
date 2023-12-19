@@ -1,5 +1,5 @@
 import { formError } from "./exceptions.js";
-import { getAllUsers, getAllOrganizations, createUser } from "./form-requests.js";
+import { getAllUsers, getAllOrganizations, createUser, createOrganization } from "./form-requests.js";
 
 const formulario = document.getElementById('dynamicForm');
 
@@ -102,8 +102,29 @@ export const organizationSignUpForm = () => {
     <label for="password">Senha</label>
     <input type="password" id="password" required>
 
-    <button type="submit">confirmar</button>
+    <button type="submit" id="submit">confirmar</button>
     `;
+    document.getElementById('submit').onclick = () => {
+        const name = document.getElementById('organizationName').value;
+        const eventType = document.getElementById('eventType').value;
+        const organizationLocation = document.getElementById('organizationLocation').value;
+        const password = document.getElementById('password').value;
+
+        if (name !== '' && eventType !== '' && organizationLocation !== '' && password !== '') {
+            event.preventDefault();
+            const organization = {
+                "name": `${name}`,
+                "eventType": `${eventType}`,
+                "location": `${organizationLocation}`,
+                "password": `${password}`
+            };
+
+            createOrganization(organization);
+
+        } else {
+            formError();
+        }
+    };
 };
 
 export const organizationLogInForm = () => {

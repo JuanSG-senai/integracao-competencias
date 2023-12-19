@@ -49,3 +49,14 @@ export const getAllOrganizations = async () => {
         console.log('Erro: ' + error);
     }
 };
+
+export const createOrganization = async (organization) => {
+    fetch(URL+'organizations', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(organization)
+    })
+    .then(response => response.json())
+    .then(data => alert('O id de sua organização é: ' + data.id + '\n\nGuarde o id em um lugar em que não será perdido. A página será recarregada, após isso entre utilizando id e senha.'))
+    .catch((error) => alert('Erro: ' + error));
+};
