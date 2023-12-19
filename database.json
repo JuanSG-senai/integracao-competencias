@@ -19,11 +19,27 @@
       "password": "xyz"
     }
   ],
-  "comments": [
+  "organizations": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "Claric Eventos",
+      "eventType": "Feira",
+      "location": "Rua Mendes Sá 38, Rio de Janeiro - RJ",
+      "password": "123"
+    },
+    {
+      "id": 2,
+      "name": "Claric Eventos",
+      "eventType": "Feira",
+      "location": "Rua Mendes Sá 38, Rio de Janeiro - RJ",
+      "password": "123"
+    },
+    {
+      "id": 3,
+      "name": "Claric Eventos",
+      "eventType": "Feira",
+      "location": "Rua Mendes Sá 38, Rio de Janeiro - RJ",
+      "password": "123"
     }
   ]
 }

@@ -1,5 +1,5 @@
 import { formError } from "./exceptions.js";
-import { getAllUsers } from "./formRequests.js";
+import { getAllUsers, getAllOrganizations, createUser } from "./formRequests.js";
 
 const formulario = document.getElementById('dynamicForm');
 
@@ -17,6 +17,30 @@ export const userSignUpForm = () => {
 
     <button id="submit" type="submit">confirmar</button>
     `;
+    const name = document.getElementById('name').value;
+    const age = document.getElementById('age').value;
+    const password = document.getElementById('password').value;
+
+    document.getElementById('submit').onclick = () => {
+        alert(name, age, password);
+        if (name !== '' && age !== '' && password !== '') {
+            const user = {
+                "username": `${name}`,
+                "age": `${age}`,
+                "password": `${password}`
+            };
+        
+            createUser(user);
+    
+            getAllUsers().then(resp => {
+                alert('Seu id é: ' + resp.length + '\n\nGuarde-o ou escreva-o em algum lugar em que não será perdido!\nA página será recarregada, após isso entre com seu id e senha.');
+            });
+    
+            location.reload();
+        } else {
+            formError();
+        }
+    };
 };
 
 export const userLogInForm = () => {
@@ -40,7 +64,7 @@ export const userLogInForm = () => {
                     formError();
                 } else {
                     if (password == resp[id-1].password) {
-                        localStorage.setItem('logado', 1);
+                        localStorage.setItem('userType', 'simple user');
                         localStorage.setItem('id', id);
                         location.reload();
                     } else {
@@ -58,8 +82,8 @@ export const userLogInForm = () => {
 export const organizationSignUpForm = () => {
     formulario.innerHTML = 
     `
-    <label for="companyName">Nome da organização</label>
-    <input type="text" id="companyName" required>
+    <label for="organizationName">Nome da organização</label>
+    <input type="text" id="organizationName" required>
 
     <label for="eventType">Tipo de evento realizado</label>
     <select name="eventType" id="eventType" required>
@@ -77,8 +101,8 @@ export const organizationSignUpForm = () => {
         <option value="Outro">Outro</option>
     </select>
 
-    <label for="companyLocation">Endereço sede da organização</label>
-    <input type="text" id="companyLocation" required>
+    <label for="organizationLocation">Endereço sede da organização</label>
+    <input type="text" id="organizationLocation" required>
 
     <label for="password">Senha</label>
     <input type="password" id="password" required>
@@ -96,6 +120,29 @@ export const organizationLogInForm = () => {
     <label for="password">Senha</label>
     <input type="password" id="password" required>
 
-    <button type="submit">confirmar</button>
+    <button id="submit" type="submit">confirmar</button>
     `;
+    getAllOrganizations().then(resp => {
+        document.getElementById('submit').onclick= () => {
+            const id = Number(document.getElementById('id').value);
+            const password = document.getElementById('password').value;
+
+            if (id !== '' && password !== '') {
+                if (id < (resp.length - (resp.length - 1)) || id > resp.length) {
+                    formError();
+                } else {
+                    if (password == resp[id-1].password) {
+                        localStorage.setItem('userType', 'organization');
+                        localStorage.setItem('id', id);
+                        location.reload();
+                    } else {
+                        formError();
+                    }
+                }
+                return false;
+            } else {
+                formError();
+            }
+        }
+    });
 };
