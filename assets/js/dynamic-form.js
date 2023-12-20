@@ -6,14 +6,20 @@ const formulario = document.getElementById('dynamicForm');
 export const userSignUpForm = () => {
     formulario.innerHTML = 
     `
-    <label for="name">Nome</label>
-    <input type="text" id="name" required>
+    <div>
+        <label for="name">Nome</label>
+        <input type="text" id="name" required>
+    </div>
 
-    <label for="age">Idade</label>
-    <input type="number" id="age" required>
+    <div>
+        <label for="age">Idade</label>
+        <input type="number" id="age" required>
+    </div>
 
-    <label for="password">Senha</label>
-    <input type="password" id="password" required>
+    <div>
+        <label for="password">Senha</label>
+        <input type="password" id="password" required>
+    </div>
 
     <button id="submit" type="submit">confirmar</button>
     `;
@@ -41,11 +47,15 @@ export const userSignUpForm = () => {
 export const userLogInForm = () => {
     formulario.innerHTML = 
     `
-    <label for="id">Seu id</label>
-    <input type="number" id="id" required>
+    <div>
+        <label for="id">Seu id</label>
+        <input type="number" id="id" required>
+    </div>
 
-    <label for="password">Senha</label>
-    <input type="password" id="password" required>
+    <div>
+        <label for="password">Senha</label>
+        <input type="password" id="password" required>
+    </div>
 
     <button id="submit" type="submit">confirmar</button>
     `;
@@ -77,30 +87,38 @@ export const userLogInForm = () => {
 export const organizationSignUpForm = () => {
     formulario.innerHTML = 
     `
-    <label for="organizationName">Nome da organização</label>
-    <input type="text" id="organizationName" required>
+    <div>
+        <label for="organizationName">Nome da organização</label>
+        <input type="text" id="organizationName" required>
+    </div>
 
-    <label for="eventType">Tipo de evento realizado</label>
-    <select name="eventType" id="eventType" required>
-        <option value="" disabled selected hidden>Selecione:</option>
-        <option value="Show">Show</option>
-        <option value="Reunião">Reunião</option>
-        <option value="WorkShop">WorkShop</option>
-        <option value="Festival">Festival</option>
-        <option value="Feira">Feira</option>
-        <option value="Desfile">Desfile</option>
-        <option value="Conferência">Conferência</option>
-        <option value="Seminário">Seminário</option>
-        <option value="Treinamento">Treinamento</option>
-        <option value="Torneio">Torneio</option>
-        <option value="Outro">Outro</option>
-    </select>
+    <div>
+        <label for="eventType">Tipo de evento realizado</label>
+        <select name="eventType" id="eventType" required>
+            <option value="" disabled selected hidden>Selecione:</option>
+            <option value="Show">Show</option>
+            <option value="Reunião">Reunião</option>
+            <option value="WorkShop">WorkShop</option>
+            <option value="Festival">Festival</option>
+            <option value="Feira">Feira</option>
+            <option value="Desfile">Desfile</option>
+            <option value="Conferência">Conferência</option>
+            <option value="Seminário">Seminário</option>
+            <option value="Treinamento">Treinamento</option>
+            <option value="Torneio">Torneio</option>
+            <option value="Outro">Outro</option>
+        </select>
+    </div>
 
-    <label for="organizationLocation">Endereço sede da organização</label>
-    <input type="text" id="organizationLocation" required>
+    <div>
+        <label for="organizationLocation">Endereço sede da organização</label>
+        <input type="text" id="organizationLocation" required>
+    </div>
 
-    <label for="password">Senha</label>
-    <input type="password" id="password" required>
+    <div>
+        <label for="password">Senha</label>
+        <input type="password" id="password" required>
+    </div>
 
     <button type="submit" id="submit">confirmar</button>
     `;
@@ -130,11 +148,15 @@ export const organizationSignUpForm = () => {
 export const organizationLogInForm = () => {
     formulario.innerHTML = 
     `
-    <label for="id">Id da organização</label>
-    <input type="number" id="id" required>
+    <div>
+        <label for="id">Id da organização</label>
+        <input type="number" id="id" required>
+    </div>
 
-    <label for="password">Senha</label>
-    <input type="password" id="password" required>
+    <div>
+        <label for="password">Senha</label>
+        <input type="password" id="password" required>
+    </div>
 
     <button id="submit" type="submit">confirmar</button>
     `;
