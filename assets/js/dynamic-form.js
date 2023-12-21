@@ -1,5 +1,5 @@
-import { formError } from "./exceptions.js";
-import { getAllUsers, getAllOrganizations, createUser, createOrganization } from "./form-requests.js";
+import { formError, userOrEmailExistsError } from "./exceptions.js";
+import { getAllUsers, getAllOrganizations, createUser, createOrganization } from "./service.js";
 
 const formulario = document.getElementById('dynamicForm');
 
@@ -9,6 +9,21 @@ export const userSignUpForm = () => {
     <div>
         <label for="name">Nome</label>
         <input type="text" id="name" required>
+    </div>
+
+    <div>
+        <label for="surname">Sobrenome</label>
+        <input type="text" id="surname" required>
+    </div>
+
+    <div>
+        <label for="username">Nome de usuário</label>
+        <input type="text" id="username" required>
+    </div>
+
+    <div>
+        <label for="email">Email</label>
+        <input type="email" id="email">
     </div>
 
     <div>
@@ -24,20 +39,32 @@ export const userSignUpForm = () => {
     <button id="submit" type="submit">confirmar</button>
     `;
     document.getElementById('submit').onclick = () => {
+        const username = document.getElementById('username').value;
         const name = document.getElementById('name').value;
+        const surname = document.getElementById('surname').value;
+        const email = document.getElementById('email').value;
         const age = document.getElementById('age').value;
         const password = document.getElementById('password').value;
 
-        if (name !== '' && age !== '' && password !== '') {
-            event.preventDefault();
-            const user = {
-                "username": `${name}`,
-                "age": `${age}`,
-                "password": `${password}`
-            };
+        if (username !== '' && name !== '' && surname !== '' && email !== '' && age !== '' && password !== '') {
+            getAllUsers().then(resp => {
+                if (resp.find(user => user.username == username) == undefined || resp.find(user => user.email == email) == undefined) {
+                    alert('Sucesso! A página será recarregada, após isso entre com seu nome de usuário ou email e senha.');
 
-            createUser(user);
+                    const user = {
+                        "username": `${username}`,
+                        "name": `${name}`,
+                        "surname": `${surname}`,
+                        "email": `${email}`,
+                        "age": `${age}`,
+                        "password": `${password}`
+                    };
 
+                    createUser(user);
+                } else {
+                    userOrEmailExistsError();
+                }
+            });
         } else {
             formError();
         }
@@ -93,6 +120,16 @@ export const organizationSignUpForm = () => {
     </div>
 
     <div>
+        <label for="username">Nome de usuário de organização</label>
+        <input type="text" id="username" required>
+    </div>
+
+    <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+    </div>
+
+    <div>
         <label for="eventType">Tipo de evento realizado</label>
         <select name="eventType" id="eventType" required>
             <option value="" disabled selected hidden>Selecione:</option>
@@ -124,21 +161,31 @@ export const organizationSignUpForm = () => {
     `;
     document.getElementById('submit').onclick = () => {
         const name = document.getElementById('organizationName').value;
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
         const eventType = document.getElementById('eventType').value;
         const organizationLocation = document.getElementById('organizationLocation').value;
         const password = document.getElementById('password').value;
 
-        if (name !== '' && eventType !== '' && organizationLocation !== '' && password !== '') {
-            event.preventDefault();
-            const organization = {
-                "name": `${name}`,
-                "eventType": `${eventType}`,
-                "location": `${organizationLocation}`,
-                "password": `${password}`
-            };
+        if (name !== '' && username !== '' && email !== '' && eventType !== '' && organizationLocation !== '' && password !== '') {
+            getAllOrganizations().then(resp => {
+                if (resp.find(organization => organization.username == username) == undefined && resp.find(organization => organization.email == email) == undefined) {
+                    alert('Sucesso! A página será recarregada, após isso entre com nome de usuário ou email e senha.');
 
-            createOrganization(organization);
+                    const user = {
+                        "username": `${username}`,
+                        "name": `${name}`,
+                        "surname": `${surname}`,
+                        "email": `${email}`,
+                        "age": `${age}`,
+                        "password": `${password}`
+                    };
 
+                    createUser(user);
+                } else {
+                    userOrEmailExistsError();
+                }
+            });
         } else {
             formError();
         }

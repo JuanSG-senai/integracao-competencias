@@ -3,25 +3,37 @@
     {
       "id": 1,
       "username": "juan123",
+      "name": "Juan",
+      "surname": "Gomes",
+      "email": "juan1234@gmail.com",
       "age": "16",
       "password": "xyz"
     },
     {
       "id": 2,
-      "username": "juan123",
+      "username": "juan1234",
+      "name": "Juan",
+      "surname": "Gomes",
+      "email": "juan123@gmail.com",
       "age": "16",
       "password": "xyz"
     },
     {
-      "id": 3,
       "username": "juan123",
-      "age": "16",
-      "password": "xyz"
-    },
-    {
-      "username": "1",
+      "name": "1",
+      "surname": "1",
+      "email": "1",
       "age": "1",
       "password": "1",
+      "id": 3
+    },
+    {
+      "username": "juan123",
+      "name": "o",
+      "surname": "o",
+      "email": "o",
+      "age": "90",
+      "password": "0",
       "id": 4
     }
   ],
@@ -29,6 +41,8 @@
     {
       "id": 1,
       "name": "Claric Eventos",
+      "username": "claric1234",
+      "email": "claric123@gmail.com",
       "eventType": "Feira",
       "location": "Rua Mendes Sá 38, Rio de Janeiro - RJ",
       "password": "123"
@@ -36,23 +50,11 @@
     {
       "id": 2,
       "name": "Claric Eventos",
+      "username": "claric123",
+      "email": "claric1234@gmail.com",
       "eventType": "Feira",
       "location": "Rua Mendes Sá 38, Rio de Janeiro - RJ",
       "password": "123"
-    },
-    {
-      "id": 3,
-      "name": "Claric Eventos",
-      "eventType": "Feira",
-      "location": "Rua Mendes Sá 38, Rio de Janeiro - RJ",
-      "password": "123"
-    },
-    {
-      "name": "Top Eventos",
-      "eventType": "Conferência",
-      "location": "Rua Azevedo Motta 47, Rio de Janeiro - RJ.",
-      "password": "1234",
-      "id": 4
     }
   ]
 }
