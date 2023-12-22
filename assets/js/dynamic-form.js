@@ -46,28 +46,45 @@ export const userSignUpForm = () => {
         const age = document.getElementById('age').value;
         const password = document.getElementById('password').value;
 
-        if (username !== '' && name !== '' && surname !== '' && email !== '' && age !== '' && password !== '') {
-            getAllUsers().then(resp => {
-                if (resp.find(user => user.username == username) == undefined || resp.find(user => user.email == email) == undefined) {
-                    alert('Sucesso! A página será recarregada, após isso entre com seu nome de usuário ou email e senha.');
+        const user = {
+            username: username,
+            name: name,
+            surname: surname,
+            email: email,
+            age: age,
+            password: password
+        };
 
-                    const user = {
-                        "username": `${username}`,
-                        "name": `${name}`,
-                        "surname": `${surname}`,
-                        "email": `${email}`,
-                        "age": `${age}`,
-                        "password": `${password}`
-                    };
-
-                    createUser(user);
-                } else {
-                    userOrEmailExistsError();
-                }
+        getAllUsers().then(users => {
+            users.forEach(element => {
+                alert(JSON.stringify(element));
             });
-        } else {
-            formError();
-        }
+        });
+
+        alert('oi');
+
+        // if (username !== '' && name !== '' && surname !== '' && email !== '' && age !== '' && password !== '') {
+        //     getAllUsers().then(resp => {
+        //         if (resp.find(user => user.username == username) == undefined || resp.find(user => user.email == email) == undefined) {
+        //             alert('Sucesso! A página será recarregada, após isso entre com seu nome de usuário ou email e senha.');
+
+        //             const user = {
+        //                 "username": `${username}`,
+        //                 "name": `${name}`,
+        //                 "surname": `${surname}`,
+        //                 "email": `${email}`,
+        //                 "age": `${age}`,
+        //                 "password": `${password}`
+        //             };
+
+        //             createUser(user);
+        //         } else {
+        //             userOrEmailExistsError();
+        //         }
+        //     });
+        // } else {
+        //     formError();
+        // }
     };
 };
 

@@ -1,60 +1,42 @@
 {
   "users": [
     {
-      "id": 1,
       "username": "juan123",
       "name": "Juan",
       "surname": "Gomes",
       "email": "juan1234@gmail.com",
       "age": "16",
-      "password": "xyz"
+      "password": "xyz",
+      "id": 1
     },
     {
-      "id": 2,
-      "username": "juan1234",
-      "name": "Juan",
-      "surname": "Gomes",
-      "email": "juan123@gmail.com",
-      "age": "16",
-      "password": "xyz"
-    },
-    {
-      "username": "juan123",
-      "name": "1",
-      "surname": "1",
-      "email": "1",
-      "age": "1",
-      "password": "1",
-      "id": 3
-    },
-    {
-      "username": "juan123",
-      "name": "o",
-      "surname": "o",
-      "email": "o",
-      "age": "90",
-      "password": "0",
-      "id": 4
+      "username": "diego1234",
+      "name": "Diego",
+      "surname": "Novaes",
+      "email": "novaesdg@gmail.com",
+      "age": "38",
+      "password": "qwerty",
+      "id": 2
     }
   ],
   "organizations": [
     {
-      "id": 1,
       "name": "Claric Eventos",
       "username": "claric1234",
       "email": "claric123@gmail.com",
       "eventType": "Feira",
       "location": "Rua Mendes Sá 38, Rio de Janeiro - RJ",
-      "password": "123"
+      "password": "123",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "Claric Eventos",
-      "username": "claric123",
-      "email": "claric1234@gmail.com",
-      "eventType": "Feira",
-      "location": "Rua Mendes Sá 38, Rio de Janeiro - RJ",
-      "password": "123"
+      "name": "Eventim",
+      "username": "eventIm",
+      "email": "eventim@gmail.com",
+      "eventType": "Show",
+      "location": "Rua Alcântara Lopes 171, São Paulo - SP",
+      "password": "xablau",
+      "id": 2
     }
   ]
 }

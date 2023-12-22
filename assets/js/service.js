@@ -5,7 +5,7 @@ const URL = 'http://localhost:3000/';
 export const getAllUsers = async () => {
     try {
         const response = await fetch(URL+'users');
-        return await response.json();
+        return response.json();
     } catch (error) {
         alert('Erro: ' + error);
     }
