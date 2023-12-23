@@ -172,29 +172,42 @@ export const organizationSignUpForm = () => {
 
     <button type="submit" id="submit">confirmar</button>
     `;
-    document.getElementById('submit').onclick = () => {
-        const name = document.getElementById('organizationName').value;
-        const username = document.getElementById('username').value;
-        const email = document.getElementById('email').value;
-        const eventType = document.getElementById('eventType').value;
-        const organizationLocation = document.getElementById('organizationLocation').value;
-        const password = document.getElementById('password').value;
+    document.getElementById('submit').onclick = (event) => {
+        event.preventDefault();
 
-        if (name !== '' && username !== '' && email !== '' && eventType !== '' && organizationLocation !== '' && password !== '') {
-            getAllOrganizations().then(resp => {
-                if (resp.find(organization => organization.username == username) == undefined && resp.find(organization => organization.email == email) == undefined) {
-                    alert('Sucesso! A página será recarregada, após isso entre com nome de usuário ou email e senha.');
+        let name = document.getElementById('organizationName').value;
+        let myUsername = document.getElementById('username').value;
+        let myEmail = document.getElementById('email').value;
+        let eventType = document.getElementById('eventType').value;
+        let organizationLocation = document.getElementById('organizationLocation').value;
+        let password = document.getElementById('password').value;
 
-                    const user = {
-                        "username": `${username}`,
-                        "name": `${name}`,
-                        "surname": `${surname}`,
-                        "email": `${email}`,
-                        "age": `${age}`,
-                        "password": `${password}`
-                    };
+        name = name.trim();
+        myUsername = myUsername.trim();
+        myEmail = myEmail.trim();
+        eventType = eventType.trim();
+        organizationLocation = organizationLocation.trim();
+        password = password.trim();
 
-                    createUser(user);
+        const myOrganization = {
+            name: name,
+            username: myUsername,
+            email: myEmail,
+            eventType: eventType,
+            location: organizationLocation,
+            password: password
+        };
+
+        if (name !== '' && myUsername !== '' && myEmail !== '' && eventType !== '' && organizationLocation !== '' && password !== '') {
+            getAllOrganizations().then(orgs => {
+                if (orgs.find(org => org.username == myUsername) == undefined) {
+                    if (orgs.find(org => org.email == myEmail) == undefined) {
+                        alert('Sucesso! A página será recarregada, após isso entre com seu nome de usuário ou email e senha.');
+
+                        createOrganization(myOrganization);
+                    } else {
+                        userOrEmailExistsError();
+                    }
                 } else {
                     userOrEmailExistsError();
                 }

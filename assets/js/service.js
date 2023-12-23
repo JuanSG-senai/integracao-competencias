@@ -27,7 +27,7 @@ export const createUser = async (user) => {
 export const getAllOrganizations = async () => {
     try {
         const response = await fetch(URL+'organizations');
-        return await response.json();
+        return response.json();
     } catch (error) {
         console.log('Erro: ' + error);
     }

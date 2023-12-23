@@ -55,6 +55,15 @@
       "location": "Rua Alcântara Lopes 171, São Paulo - SP",
       "password": "xablau",
       "id": 2
+    },
+    {
+      "name": "Eleven Eventos",
+      "username": "eEventos07",
+      "email": "eleventos07@gmail.com",
+      "eventType": "Festival",
+      "location": "Rua Quintino da Conceição 238, Vitória - BA.",
+      "password": "elev07",
+      "id": 3
     }
   ]
 }
