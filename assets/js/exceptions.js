@@ -7,3 +7,8 @@ export const userOrEmailExistsError = () => {
     alert('Nome de usuário ou email já existe! Tente novamente ou entre.');
     location.reload();
 };
+
+export const userEmailOrPasswordIncorrect = () => {
+    alert('Nome de usuário ou senha incorretos! Tente novamente ou cadastre-se.');
+    location.reload();
+};

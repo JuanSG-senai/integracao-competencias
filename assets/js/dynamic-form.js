@@ -1,4 +1,4 @@
-import { formError, userOrEmailExistsError } from "./exceptions.js";
+import { formError, userEmailOrPasswordIncorrect, userOrEmailExistsError } from "./exceptions.js";
 import { getAllUsers, getAllOrganizations, createUser, createOrganization } from "./service.js";
 
 const formulario = document.getElementById('dynamicForm');
@@ -88,8 +88,8 @@ export const userLogInForm = () => {
     formulario.innerHTML = 
     `
     <div>
-        <label for="id">Seu id</label>
-        <input type="number" id="id" required>
+        <label for="userOrEmail">Nome de usuário ou Email</label>
+        <input type="text" id="userOrEmail" required>
     </div>
 
     <div>
@@ -99,24 +99,36 @@ export const userLogInForm = () => {
 
     <button id="submit" type="submit">confirmar</button>
     `;
-    getAllUsers().then(resp => {
+    getAllUsers().then(users => {
         document.getElementById('submit').onclick= () => {
-            const id = Number(document.getElementById('id').value);
-            const password = document.getElementById('password').value;
+            let userOrEmail = document.getElementById('userOrEmail').value;
+            let password = document.getElementById('password').value;
 
-            if (id !== '' && password !== '') {
-                if (id < (resp.length - (resp.length - 1)) || id > resp.length) {
-                    formError();
-                } else {
-                    if (password == resp[id-1].password) {
-                        localStorage.setItem('userType', 'simple user');
-                        localStorage.setItem('id', id);
-                        location.reload();
+            userOrEmail = userOrEmail.trim();
+            password = password.trim();
+
+            if (userOrEmail !== '' && password !== '') {
+                if (users.find(user => user.username == userOrEmail) !== undefined) {
+                    const user = users.find(user => user.username == userOrEmail);
+
+                    if (user.password == password) {
+                        localStorage.setItem('userType','simple user');
+                        localStorage.setItem('id',`${user.id}`);
                     } else {
-                        formError();
+                        userEmailOrPasswordIncorrect();
                     }
+                } else if (users.find(user => user.email == userOrEmail) !== undefined) {
+                    const user = users.find(user => user.email == userOrEmail);
+
+                    if (user.password == password) {
+                        localStorage.setItem('userType','simple user');
+                        localStorage.setItem('id',`${user.id}`);
+                    } else {
+                        userEmailOrPasswordIncorrect();
+                    }
+                } else {
+                    userEmailOrPasswordIncorrect();
                 }
-                return false;
             } else {
                 formError();
             }
