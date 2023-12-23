@@ -41,12 +41,19 @@ export const userSignUpForm = () => {
     document.getElementById('submit').onclick = (event) => {
         event.preventDefault();
 
-        const myUsername = document.getElementById('username').value;
-        const name = document.getElementById('name').value;
-        const surname = document.getElementById('surname').value;
-        const myEmail = document.getElementById('email').value;
-        const age = document.getElementById('age').value;
-        const password = document.getElementById('password').value;
+        let myUsername = document.getElementById('username').value;
+        let name = document.getElementById('name').value;
+        let surname = document.getElementById('surname').value;
+        let myEmail = document.getElementById('email').value;
+        let age = document.getElementById('age').value;
+        let password = document.getElementById('password').value;
+
+        myUsername = myUsername.trim();
+        name = name.trim();
+        surname = surname.trim();
+        myEmail = myEmail.trim();
+        age = age.trim();
+        password = password.trim();
 
         const myUser = {
             username: myUsername,
