@@ -46,7 +46,7 @@ export const userSignUpForm = () => {
         const age = document.getElementById('age').value;
         const password = document.getElementById('password').value;
 
-        const user = {
+        const myUser = {
             username: username,
             name: name,
             surname: surname,
@@ -55,36 +55,23 @@ export const userSignUpForm = () => {
             password: password
         };
 
-        getAllUsers().then(users => {
-            users.forEach(element => {
-                alert(JSON.stringify(element));
-            });
-        });
+        // Promise.all(getAllUsers().then(users => {
 
-        alert('oi');
+        // }));
 
-        // if (username !== '' && name !== '' && surname !== '' && email !== '' && age !== '' && password !== '') {
-        //     getAllUsers().then(resp => {
-        //         if (resp.find(user => user.username == username) == undefined || resp.find(user => user.email == email) == undefined) {
-        //             alert('Sucesso! A página será recarregada, após isso entre com seu nome de usuário ou email e senha.');
+        if (username !== '' && name !== '' && surname !== '' && email !== '' && age !== '' && password !== '') {
+            Promise.all(getAllUsers().then(users => {
+                if (users.find(user => user.username == username) == undefined || users.find(user => user.email == email) == undefined) {
+                    alert('Sucesso! A página será recarregada, após isso entre com seu nome de usuário ou email e senha.');
 
-        //             const user = {
-        //                 "username": `${username}`,
-        //                 "name": `${name}`,
-        //                 "surname": `${surname}`,
-        //                 "email": `${email}`,
-        //                 "age": `${age}`,
-        //                 "password": `${password}`
-        //             };
-
-        //             createUser(user);
-        //         } else {
-        //             userOrEmailExistsError();
-        //         }
-        //     });
-        // } else {
-        //     formError();
-        // }
+                    createUser(myUser);
+                } else {
+                    userOrEmailExistsError();
+                }
+            }));
+        } else {
+            formError();
+        }
     };
 };
 
