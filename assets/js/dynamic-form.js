@@ -38,7 +38,9 @@ export const userSignUpForm = () => {
 
     <button id="submit" type="submit">confirmar</button>
     `;
-    document.getElementById('submit').onclick = () => {
+    document.getElementById('submit').onclick = (event) => {
+        event.preventDefault();
+
         const username = document.getElementById('username').value;
         const name = document.getElementById('name').value;
         const surname = document.getElementById('surname').value;
@@ -55,12 +57,8 @@ export const userSignUpForm = () => {
             password: password
         };
 
-        // Promise.all(getAllUsers().then(users => {
-
-        // }));
-
         if (username !== '' && name !== '' && surname !== '' && email !== '' && age !== '' && password !== '') {
-            Promise.all(getAllUsers().then(users => {
+            getAllUsers().then(users => {
                 if (users.find(user => user.username == username) == undefined || users.find(user => user.email == email) == undefined) {
                     alert('Sucesso! A página será recarregada, após isso entre com seu nome de usuário ou email e senha.');
 
@@ -68,7 +66,7 @@ export const userSignUpForm = () => {
                 } else {
                     userOrEmailExistsError();
                 }
-            }));
+            });
         } else {
             formError();
         }

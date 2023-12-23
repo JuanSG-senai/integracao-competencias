@@ -17,6 +17,33 @@
       "age": "38",
       "password": "qwerty",
       "id": 2
+    },
+    {
+      "username": "RSantos",
+      "name": "Ralf",
+      "surname": "Santos",
+      "email": "rsantos@gmail.com",
+      "age": "90",
+      "password": "1234567890",
+      "id": 3
+    },
+    {
+      "username": "RSantos",
+      "name": "Eriberto",
+      "surname": "Leão",
+      "email": "12121212@gmail.com",
+      "age": "90",
+      "password": "12121212121212121",
+      "id": 4
+    },
+    {
+      "username": "RSantos",
+      "name": "212",
+      "surname": "1",
+      "email": "r",
+      "age": "90",
+      "password": "5555",
+      "id": 5
     }
   ],
   "organizations": [
