@@ -234,8 +234,8 @@ export const organizationLogInForm = () => {
     formulario.innerHTML = 
     `
     <div>
-        <label for="id">Id da organização</label>
-        <input type="number" id="id" required>
+        <label for="userOrEmail">Nome de usuário de organização ou Email</label>
+        <input type="text" id="userOrEmail" required>
     </div>
 
     <div>
@@ -245,24 +245,36 @@ export const organizationLogInForm = () => {
 
     <button id="submit" type="submit">confirmar</button>
     `;
-    getAllOrganizations().then(resp => {
-        document.getElementById('submit').onclick= () => {
-            const id = Number(document.getElementById('id').value);
-            const password = document.getElementById('password').value;
+    getAllOrganizations().then(orgs => {
+        document.getElementById('submit').onclick = () => {
+            let userOrEmail = document.getElementById('userOrEmail').value;
+            let password = document.getElementById('password').value;
 
-            if (id !== '' && password !== '') {
-                if (id < (resp.length - (resp.length - 1)) || id > resp.length) {
-                    formError();
-                } else {
-                    if (password == resp[id-1].password) {
-                        localStorage.setItem('userType', 'organization');
-                        localStorage.setItem('id', id);
-                        location.reload();
+            userOrEmail = userOrEmail.trim();
+            password = password.trim();
+
+            if (userOrEmail !== '' && password !== '') {
+                if (orgs.find(org => org.username == userOrEmail) !== undefined) {
+                    const orgUser = orgs.find(org => org.username == userOrEmail);
+
+                    if (orgUser.password == password) {
+                        localStorage.setItem('userType','organization');
+                        localStorage.setItem('id',`${orgUser.id}`);
                     } else {
-                        formError();
+                        userEmailOrPasswordIncorrect();
                     }
+                } else if (orgs.find(org => org.email == userOrEmail) !== undefined) {
+                    const orgUser = orgs.find(org => org.email == userOrEmail);
+
+                    if (orgUser.password == password) {
+                        localStorage.setItem('userType','organization');
+                        localStorage.setItem('id',`${orgUser.id}`);
+                    } else {
+                        userEmailOrPasswordIncorrect();
+                    }
+                } else {
+                    userEmailOrPasswordIncorrect();
                 }
-                return false;
             } else {
                 formError();
             }

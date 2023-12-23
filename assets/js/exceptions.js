@@ -9,6 +9,6 @@ export const userOrEmailExistsError = () => {
 };
 
 export const userEmailOrPasswordIncorrect = () => {
-    alert('Nome de usuário ou senha incorretos! Tente novamente ou cadastre-se.');
+    alert('Nome de usuário/Email ou senha incorretos! Tente novamente ou cadastre-se.');
     location.reload();
 };
