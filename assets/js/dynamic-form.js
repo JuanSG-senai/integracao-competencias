@@ -41,28 +41,32 @@ export const userSignUpForm = () => {
     document.getElementById('submit').onclick = (event) => {
         event.preventDefault();
 
-        const username = document.getElementById('username').value;
+        const myUsername = document.getElementById('username').value;
         const name = document.getElementById('name').value;
         const surname = document.getElementById('surname').value;
-        const email = document.getElementById('email').value;
+        const myEmail = document.getElementById('email').value;
         const age = document.getElementById('age').value;
         const password = document.getElementById('password').value;
 
         const myUser = {
-            username: username,
+            username: myUsername,
             name: name,
             surname: surname,
-            email: email,
+            email: myEmail,
             age: age,
             password: password
         };
 
-        if (username !== '' && name !== '' && surname !== '' && email !== '' && age !== '' && password !== '') {
+        if (myUsername !== '' && name !== '' && surname !== '' && myEmail !== '' && age !== '' && password !== '') {
             getAllUsers().then(users => {
-                if (users.find(user => user.username == username) == undefined || users.find(user => user.email == email) == undefined) {
-                    alert('Sucesso! A página será recarregada, após isso entre com seu nome de usuário ou email e senha.');
+                if (users.find(user => user.username == myUsername) == undefined) {
+                    if (users.find(user => user.email == myEmail) == undefined) {
+                        alert('Sucesso! A página será recarregada, após isso entre com nome de usuário ou email e senha.');
 
-                    createUser(myUser);
+                        createUser(myUser);
+                    } else {
+                        userOrEmailExistsError();
+                    }
                 } else {
                     userOrEmailExistsError();
                 }

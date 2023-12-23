@@ -28,22 +28,13 @@
       "id": 3
     },
     {
-      "username": "RSantos",
-      "name": "Eriberto",
-      "surname": "Leão",
-      "email": "12121212@gmail.com",
-      "age": "90",
-      "password": "12121212121212121",
+      "username": "asandro",
+      "name": "Alex",
+      "surname": "Sandro",
+      "email": "asandro@gmail.com",
+      "age": "43",
+      "password": "12213443",
       "id": 4
-    },
-    {
-      "username": "RSantos",
-      "name": "212",
-      "surname": "1",
-      "email": "r",
-      "age": "90",
-      "password": "5555",
-      "id": 5
     }
   ],
   "organizations": [
