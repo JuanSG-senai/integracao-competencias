@@ -7,6 +7,10 @@
     font-family: 'Lora', serif;
 }
 
+button {
+    cursor: pointer;
+}
+
 /* DEFININDO ÁREAS DE CADASTRO E LOGIN */
 
 #switchForm {
@@ -43,7 +47,6 @@
     border-radius: 5px;
     background-color: transparent;
     padding: 5px;
-    cursor: pointer;
     transition: all 0.2s;
 }
 
@@ -71,4 +74,56 @@ form input {
     border: 2px gray solid;
     border-radius: 10px;
     padding: 10px;
+}
+
+/* ESTILIZANDO DASHBOARD */
+
+/* NAVBAR */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+}
+
+.nav h1, .nav div {
+    margin: 10px;
+}
+
+#navModal {
+    display: none;
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%);
+    flex-direction: column;
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 10px;
+    color: black;
+}
+
+#navModal span {
+    display: flex;
+    gap: 10px;
+    font-weight:900;
+    margin-bottom: 15px;
+}
+
+#navModal p {
+    font-weight: initial;
+}
+
+#userNav {
+    cursor: pointer;
+}
+
+#closeModal {
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 5px;
+    width: auto;
+    margin-left: auto;
+    background-color: white;
+    color: black;
 }
