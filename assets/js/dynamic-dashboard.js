@@ -1,3 +1,5 @@
+import { getAllEvents } from './service.js';
+
 // Dashboard para usuário simples
 
 export const userDashboard = () => {
@@ -10,7 +12,10 @@ export const userDashboard = () => {
     <nav class="nav">
         <h1>JN Eventos</h1>
         <div>
-            <p id="userNav">${user.username}</p>
+            <span id="user">
+                <img src="./assets/content/user.png">
+                <p>${user.username}</p>
+            </span>
             <div id="navModal">
                 <span>Nome de usuário  <p>${user.username}</p></span>
                 <span>Nome  <p>${user.name}</p></span>
@@ -26,7 +31,7 @@ export const userDashboard = () => {
     body.appendChild(header);
 
     const navModal = document.getElementById('navModal');
-    document.getElementById('userNav').onclick = () => {
+    document.getElementById('user').onclick = () => {
         navModal.style.display = 'flex';
         body.style.pointerEvents = 'none';
         navModal.style.pointerEvents = 'auto';
@@ -35,4 +40,32 @@ export const userDashboard = () => {
         navModal.style.display = 'none';
         body.style.pointerEvents = 'auto';
     };
+
+    // MAIN COM TODOS OS EVENTOS
+    const main = document.createElement('main');
+    main.innerHTML = `
+    <h1 class="main-title">Eventos</h1>
+    
+    <div id="allEvents"></div>
+    `;
+    body.appendChild(main);
+
+    getAllEvents().then(events => {
+        events.reverse();
+        events.forEach(event => {
+            const cardEvent = document.createElement('div');
+            cardEvent.setAttribute('class', 'cardEvent');
+            cardEvent.innerHTML = `
+            <img src="${event.bannerSrc}">
+            <h1>${event.title}</h1>
+            <span>Tipo: ${event.category}</span>
+            <p>Organização:  ${event.organizerUsername}</p>
+            <p>Descrição: ${event.description}</p>
+            <p>Local: ${event.location}</p>
+            <p>Data e hora: ${event.date}, aś ${event.time}</p>
+            <a href="${event.link}">Ingressos</a>
+            `;
+            document.getElementById('allEvents').appendChild(cardEvent);
+        });
+    });
 };

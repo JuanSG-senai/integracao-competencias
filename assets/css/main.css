@@ -82,11 +82,12 @@ form input {
 .nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: black;
     color: white;
 }
 
-.nav h1, .nav div {
+.nav h1 {
     margin: 10px;
 }
 
@@ -100,6 +101,7 @@ form input {
     border: 2px solid gray;
     border-radius: 10px;
     padding: 10px;
+    background-color: white;
     color: black;
 }
 
@@ -114,8 +116,22 @@ form input {
     font-weight: initial;
 }
 
-#userNav {
+#user {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-right: 10px;
     cursor: pointer;
+    margin-bottom: 0;
+}
+
+#user p {
+    font-size: 28px;
+}
+
+#user img {
+    width: 32px;
+    height: 32px;
 }
 
 #closeModal {
@@ -126,4 +142,30 @@ form input {
     margin-left: auto;
     background-color: white;
     color: black;
+}
+
+/* ESTILIZANDO MAIN DO DASHBARD QUE CONTÉM TODOS OS EVENTOS */
+
+h1 {
+    font-size: 28px;
+}
+
+.main-title {
+    padding: 20px;
+}
+
+.cardEvent {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin-left: 20px;
+    margin-bottom: 40px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.cardEvent img {
+    width: 100%;
+    border-radius: 10px;
 }
