@@ -113,7 +113,7 @@ export const userLogInForm = () => {
 
                     if (user.password == password) {
                         localStorage.setItem('userType','simple user');
-                        localStorage.setItem('id',`${user.id}`);
+                        localStorage.setItem('user',`${JSON.stringify(user)}`);
                     } else {
                         userEmailOrPasswordIncorrect();
                     }

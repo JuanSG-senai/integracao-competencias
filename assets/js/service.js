@@ -43,3 +43,14 @@ export const createOrganization = async (organization) => {
     .then(data => console.log('Sucesso: ' + data))
     .catch((error) => alert('Erro: ' + error));
 };
+
+// Requisições de eventos
+
+export const getAllEvents = async () => {
+    try {
+        const response = await fetch(URL+'events');
+        return response.json();
+    } catch (error) {
+        alert('Erro: ' + error);
+    }
+};

@@ -1,8 +1,10 @@
+import { userDashboard } from './dynamic-dashboard.js';
 import { userSignUpForm, userLogInForm, organizationSignUpForm, organizationLogInForm } from './dynamic-form.js';
 
 if (localStorage.getItem('userType') == 'simple user') {
 
-    document.getElementById('dynamicForm').style.display = 'none';    
+    document.getElementById('dynamicForm').style.display = 'none';
+    userDashboard();
 
 } else if (localStorage.getItem('userType') == 'organization') {
 
