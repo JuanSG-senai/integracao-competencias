@@ -54,3 +54,10 @@ export const getAllEvents = async () => {
         alert('Erro: ' + error);
     }
 };
+
+export const deleteEvent = async (id) => {
+    fetch((URL+'events/')+`${id}`, {method: 'DELETE'})
+    .then(response => response.json())
+    .then(data => console.log('sucesso: ', data))
+    .catch((error) => alert('Erro: ' + error));
+};

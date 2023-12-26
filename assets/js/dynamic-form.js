@@ -259,7 +259,7 @@ export const organizationLogInForm = () => {
 
                     if (orgUser.password == password) {
                         localStorage.setItem('userType','organization');
-                        localStorage.setItem('id',`${orgUser.id}`);
+                        localStorage.setItem('orgUser',`${JSON.stringify(orgUser)}`);
                     } else {
                         userEmailOrPasswordIncorrect();
                     }
