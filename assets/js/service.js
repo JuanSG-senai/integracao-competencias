@@ -66,6 +66,17 @@ export const postEvent = async (event) => {
     .catch((error) => console.log('Erro: ' + error));
 };
 
+export const patchEvent = async (event) => {
+    fetch(URL+'events'+`/${event.id}`, {
+        method: 'PATCH',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(event)
+    })
+    .then(response => response.json())
+    .then(data => console.log('sucesso: ' + data))
+    .catch((error) => console.log('Erro: ' + error));
+};
+
 export const deleteEvent = async (id) => {
     fetch((URL+'events/')+`${id}`, {method: 'DELETE'})
     .then(response => response.json())

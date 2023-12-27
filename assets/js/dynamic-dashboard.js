@@ -1,4 +1,4 @@
-import { deleteEvent, getAllEvents, postEvent } from './service.js';
+import { deleteEvent, getAllEvents, postEvent, patchEvent } from './service.js';
 import { formError } from './exceptions.js';
 
 // Dashboard para usuário simples
@@ -18,12 +18,11 @@ export const userDashboard = () => {
                 <p>${user.username}</p>
             </span>
             <div id="navModal">
-                <span>Nome de usuário  <p>${user.username}</p></span>
+                <span>Nome de usuário  <p>${user.username}</p><button id="closeModal"><img src="./assets/content/close.png"></button></span>
                 <span>Nome  <p>${user.name}</p></span>
                 <span>Sobrenome  <p>${user.surname}</p></span>
                 <span>Email  <p>${user.email}</p></span>
                 <span>Idade  <p>${user.age}</p></span>
-                <button id="closeModal">Fechar</button>
             </div>
         </div>
     </nav>
@@ -246,21 +245,24 @@ export const orgDashboard = () => {
                 <a href="${event.link}">Ingressos</a>
                 <button id="updateEvent${id}">Modificar</button>
 
-                <form style="display: none;" id="updateEventForm${id}">
+                <form class="updateEventForm" style="display: none;" id="updateEventForm${id}">
                     <div>
-                        <label for="title${id}">Título</label>
-                        <input id="title${id}" required>
+                        <span>
+                            <label for="title${id}">Título</label>
+                            <button id="close${id}"><img src="./assets/content/close.png"></button>
+                        </span>
+                        <input id="title${id}" value="${event.title}" required>
                     </div>
 
                     <div>
-                        <label for="bannerSrc${id}">Banner</label>
+                        <label for="bannerSrc${id}">Banner (Se não for mudar a imagem apenas ignore)</label>
                         <input type="file" id="bannerSrc${id}" required>
                     </div>
 
                     <div>
-                        <label for="category${id}">Tipo de evento realizado</label>
+                        <label for="category${id}">Tipo de evento</label>
                         <select id="category${id}" required>
-                            <option value="" disabled selected hidden>Selecione:</option>
+                            <option value="" disabled selected hidden>Se não for mudar selecione o original</option>
                             <option value="Show">Show</option>
                             <option value="Reunião">Reunião</option>
                             <option value="WorkShop">WorkShop</option>
@@ -277,27 +279,27 @@ export const orgDashboard = () => {
 
                     <div>
                         <label for="description${id}">Descrição</label>
-                        <input id="description${id}" required>
+                        <input id="description${id}" value="${event.description}" required>
                     </div>
 
                     <div>
                         <label for="location${id}">Local</label>
-                        <input id="location${id}" required>
+                        <input id="location${id}" value="${event.location}" required>
                     </div>
 
                     <div>
                         <label for="date${id}">Data</label>
-                        <input id="date${id}" placeholder="25 de março" required>
+                        <input id="date${id}" value="${event.date}" placeholder="25 de março" required>
                     </div>
 
                     <div>
                         <label for="time${id}">Horário</label>
-                        <input id="time${id}" placeholder="10:30" required>
+                        <input id="time${id}" value="${event.time}" placeholder="10:30" required>
                     </div>
 
                     <div>
                         <label for="link${id}">Link dos ingressos</label>
-                        <input id="link${id}" required>
+                        <input id="link${id}" value="${event.link}" required>
                     </div>
 
                     <button type="submit" id="submit${id}">Confirmar</button>
@@ -306,6 +308,70 @@ export const orgDashboard = () => {
                 <button id="deleteEvent${id}">Excluir</button>
                 `;
                 document.getElementById('allEvents').appendChild(cardEvent);
+                document.getElementById('close'+id).style = 'background-color: white;border: 0;height: 22px;';
+
+                const updateEventForm = document.getElementById('updateEventForm'+id);
+                document.getElementById('updateEvent'+id).onclick = () => {
+                    updateEventForm.style.display = 'flex';
+                    body.style.pointerEvents = 'none';
+                    updateEventForm.style.pointerEvents = 'auto';
+                };
+                document.getElementById('close'+id).onclick = () => {
+                    updateEventForm.style.display = 'none';
+                    body.style.pointerEvents = 'auto';
+                };
+
+                document.getElementById('submit'+id).onclick = () => {
+                    let title = document.getElementById('title'+id).value.trim();
+                    let bannerSrc = document.getElementById('bannerSrc'+id).files[0];
+                    let category = document.getElementById('category'+id).value.trim();
+                    let description = document.getElementById('description'+id).value.trim();
+                    let location = document.getElementById('location'+id).value.trim();
+                    let date = document.getElementById('date'+id).value.trim();
+                    let time = document.getElementById('time'+id).value.trim();
+                    let link = document.getElementById('link'+id).value.trim();
+
+                    if (title !== '' && typeof bannerSrc == 'object' && category !== '' && description !== '' && location !== '' && date !== '' && time !== '' && link !== '') {
+                        const lerArquivo = new FileReader();
+                        lerArquivo.onload = (bannerSrc) => {
+                            const banner = bannerSrc.target.result;
+
+                            const myEvent = {
+                                id: event.id,
+                                title: title,
+                                bannerSrc: banner,
+                                category: category,
+                                description: description,
+                                location: location,
+                                date: date,
+                                time: time,
+                                link: link
+                            };
+
+                            patchEvent(myEvent);
+                            alert('Evento modificado com sucesso!');
+                        }
+
+                        lerArquivo.readAsDataURL(bannerSrc);
+                    } else if (title !== '' && typeof bannerSrc !== 'object' && category !== '' && description !== '' && location !== '' && date !== '' && time !== '' && link !== '') {
+                        const myEvent = {
+                            id: event.id,
+                            title: title,
+                            category: category,
+                            description: description,
+                            location: location,
+                            date: date,
+                            time: time,
+                            link: link
+                        };
+
+                        patchEvent(myEvent);
+                        alert('Evento modificado com sucesso!');
+                    } else {
+                        formError();
+                        alert('Dica: caso tenha esquecido, você deve selecionar o tipo do evento mesmo que não vá mudá-lo');
+                    }
+                };
                 document.getElementById('deleteEvent'+id).onclick = () => {
                     alert('Evento excluído com sucesso!');
                     deleteEvent(id);
