@@ -55,6 +55,17 @@ export const getAllEvents = async () => {
     }
 };
 
+export const postEvent = async (event) => {
+    fetch(URL+'events', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(event)
+    })
+    .then(response => response.json())
+    .then(data => console.log('Sucesso: ' + data))
+    .catch((error) => console.log('Erro: ' + error));
+};
+
 export const deleteEvent = async (id) => {
     fetch((URL+'events/')+`${id}`, {method: 'DELETE'})
     .then(response => response.json())

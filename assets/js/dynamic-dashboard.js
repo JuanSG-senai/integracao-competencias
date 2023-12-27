@@ -1,4 +1,5 @@
-import { deleteEvent, getAllEvents } from './service.js';
+import { deleteEvent, getAllEvents, postEvent } from './service.js';
+import { formError } from './exceptions.js';
 
 // Dashboard para usuário simples
 
@@ -118,7 +119,7 @@ export const orgDashboard = () => {
         <p>Criar Evento</p><img class="createEvent" src="./assets/content/add.png" alt="Criar Evento">
     </button>
 
-    <form id="createEventForm">
+    <form style="display: none;" id="createEventForm">
         <div>
             <label for="title">Título</label>
             <input id="title" required>
@@ -185,9 +186,46 @@ export const orgDashboard = () => {
         const createEventForm = document.getElementById('createEventForm');
 
         if (createEventForm.style.display == 'none') {
-            createEventForm.style.display == 'flex';
+            createEventForm.style.display = 'flex';
         } else {
-            createEventForm.style.display == 'none';
+            createEventForm.style.display = 'none';
+        }
+    };
+
+    document.getElementById('submit').onclick = () => {
+        let title = document.getElementById('title').value.trim();
+        let bannerSrc = document.getElementById('bannerSrc').files[0];
+        let category = document.getElementById('category').value.trim();
+        let description = document.getElementById('description').value.trim();
+        let location = document.getElementById('location').value.trim();
+        let date = document.getElementById('date').value.trim();
+        let time = document.getElementById('time').value.trim();
+        let link = document.getElementById('link').value.trim();
+
+        if (title !== '' && typeof bannerSrc == 'object' && category !== '' && description !== '' && location !== '' && date !== '' && time !== '' && link !== '') {
+            const lerArquivo = new FileReader();
+            lerArquivo.onload = (bannerSrc) => {
+                const banner = bannerSrc.target.result;
+
+                const myEvent = {
+                    title: title,
+                    bannerSrc: banner,
+                    category: category,
+                    organizerUsername: orgUser.username,
+                    description: description,
+                    location: location,
+                    date: date,
+                    time: time,
+                    link: link
+                };
+
+                postEvent(myEvent);
+
+                alert('Evento criado com sucesso!');
+            };
+            lerArquivo.readAsDataURL(bannerSrc);
+        } else {
+            formError();
         }
     };
 
@@ -195,6 +233,7 @@ export const orgDashboard = () => {
         events.reverse();
         events.forEach(event => {
             if (event.organizerUsername == orgUser.username) {
+                const id = event.id;
                 const cardEvent = document.createElement('div');
                 cardEvent.setAttribute('class', 'cardEvent');
                 cardEvent.innerHTML = `
@@ -207,12 +246,12 @@ export const orgDashboard = () => {
                 <p>Data e hora: ${event.date}, aś ${event.time}</p>
                 <a href="${event.link}">Ingressos</a>
                 <button id="updateEvent">Modificar</button>
-                <button id="deleteEvent">Excluir</button>
+                <button id="deleteEvent${id}">Excluir</button>
                 `;
                 document.getElementById('allEvents').appendChild(cardEvent);
-                document.getElementById('deleteEvent').onclick = () => {
+                document.getElementById('deleteEvent'+id).onclick = () => {
                     alert('Evento excluído com sucesso!');
-                    deleteEvent(event.id);
+                    deleteEvent(id);
                 };
             } else {
                 const cardEvent = document.createElement('div');
