@@ -103,13 +103,13 @@ form input, select {
     padding: 10px;
     background-color: white;
     color: black;
+    gap: 15px;
 }
 
 #navModal span {
     display: flex;
-    gap: 10px;
+    gap: 0 10px;
     font-weight:900;
-    margin-bottom: 15px;
 }
 
 #navModal p {
@@ -135,13 +135,16 @@ form input, select {
 }
 
 #closeModal {
-    border: 2px solid gray;
-    border-radius: 5px;
-    padding: 5px;
-    width: auto;
-    margin-left: auto;
+    border: 0;
     background-color: white;
-    color: black;
+    height: 20px;
+    margin: auto 0;
+    margin-left: auto;
+}
+
+#closeModal img {
+    width: 20px;
+    height: 20px;
 }
 
 /* ESTILIZANDO MENU DE CRIAR EVENTOS */

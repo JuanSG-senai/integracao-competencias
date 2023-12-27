@@ -88,12 +88,11 @@ export const orgDashboard = () => {
                 <p>${orgUser.username}</p>
             </span>
             <div id="navModal">
-                <span>Nome  <p>${orgUser.name}</p></span>
+                <span>Nome  <p>${orgUser.name}</p><button id="closeModal"><img src="./assets/content/close.png"></button></span>
                 <span>Nome de usuário  <p>${orgUser.username}</p></span>
                 <span>Email  <p>${orgUser.email}</p></span>
                 <span>Categoria  <p>${orgUser.eventType}</p></span>
                 <span>Localização  <p>${orgUser.location}</p></span>
-                <button id="closeModal">Fechar</button>
             </div>
         </div>
     </nav>
@@ -245,7 +244,65 @@ export const orgDashboard = () => {
                 <p>Local: ${event.location}</p>
                 <p>Data e hora: ${event.date}, aś ${event.time}</p>
                 <a href="${event.link}">Ingressos</a>
-                <button id="updateEvent">Modificar</button>
+                <button id="updateEvent${id}">Modificar</button>
+
+                <form style="display: none;" id="updateEventForm${id}">
+                    <div>
+                        <label for="title${id}">Título</label>
+                        <input id="title${id}" required>
+                    </div>
+
+                    <div>
+                        <label for="bannerSrc${id}">Banner</label>
+                        <input type="file" id="bannerSrc${id}" required>
+                    </div>
+
+                    <div>
+                        <label for="category${id}">Tipo de evento realizado</label>
+                        <select id="category${id}" required>
+                            <option value="" disabled selected hidden>Selecione:</option>
+                            <option value="Show">Show</option>
+                            <option value="Reunião">Reunião</option>
+                            <option value="WorkShop">WorkShop</option>
+                            <option value="Festival">Festival</option>
+                            <option value="Feira">Feira</option>
+                            <option value="Desfile">Desfile</option>
+                            <option value="Conferência">Conferência</option>
+                            <option value="Seminário">Seminário</option>
+                            <option value="Treinamento">Treinamento</option>
+                            <option value="Torneio">Torneio</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="description${id}">Descrição</label>
+                        <input id="description${id}" required>
+                    </div>
+
+                    <div>
+                        <label for="location${id}">Local</label>
+                        <input id="location${id}" required>
+                    </div>
+
+                    <div>
+                        <label for="date${id}">Data</label>
+                        <input id="date${id}" placeholder="25 de março" required>
+                    </div>
+
+                    <div>
+                        <label for="time${id}">Horário</label>
+                        <input id="time${id}" placeholder="10:30" required>
+                    </div>
+
+                    <div>
+                        <label for="link${id}">Link dos ingressos</label>
+                        <input id="link${id}" required>
+                    </div>
+
+                    <button type="submit" id="submit${id}">Confirmar</button>
+                </form>
+
                 <button id="deleteEvent${id}">Excluir</button>
                 `;
                 document.getElementById('allEvents').appendChild(cardEvent);
