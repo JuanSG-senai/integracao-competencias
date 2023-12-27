@@ -243,7 +243,7 @@ export const orgDashboard = () => {
                 <p>Local: ${event.location}</p>
                 <p>Data e hora: ${event.date}, aś ${event.time}</p>
                 <a href="${event.link}">Ingressos</a>
-                <button id="updateEvent${id}">Modificar</button>
+                <button class="updateFormButton" id="updateEvent${id}">Modificar</button>
 
                 <form class="updateEventForm" style="display: none;" id="updateEventForm${id}">
                     <div>
@@ -305,7 +305,7 @@ export const orgDashboard = () => {
                     <button type="submit" id="submit${id}">Confirmar</button>
                 </form>
 
-                <button id="deleteEvent${id}">Excluir</button>
+                <button class="updateFormButton" id="deleteEvent${id}">Excluir</button>
                 `;
                 document.getElementById('allEvents').appendChild(cardEvent);
                 document.getElementById('close'+id).style = 'background-color: white;border: 0;height: 22px;';

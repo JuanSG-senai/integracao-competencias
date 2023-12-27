@@ -76,6 +76,22 @@ form input, select {
     padding: 10px;
 }
 
+form button {
+    padding: 5px;
+    width: 120px;
+    background-color: white;
+    border: 2px solid gray;
+    border-radius: 10px;
+}
+
+span button {
+    padding: 0;
+    margin: 0;
+    width: 22px;
+    justify-content: center;
+    align-items: center;
+}
+
 /* ESTILIZANDO DASHBOARD */
 
 /* NAVBAR */
@@ -194,6 +210,8 @@ h1 {
 .cardEvent {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
     width: 45%;
     margin-bottom: 40px;
     border: 2px solid gray;
@@ -204,6 +222,15 @@ h1 {
 .cardEvent img {
     width: 100%;
     border-radius: 10px;
+}
+
+.updateFormButton {
+    border: 0;
+    border-radius: 10px;
+    width: 120px;
+    background-color: slategray;
+    color: white;
+    margin-left: auto;
 }
 
 /* ESTILIZANDO FORMULÁRIO DE ATUALIZAR EVENTOS */
