@@ -70,7 +70,7 @@ form div {
     row-gap: 5px;
 }
 
-form input {
+form input, select {
     border: 2px gray solid;
     border-radius: 10px;
     padding: 10px;
@@ -144,6 +144,35 @@ form input {
     color: black;
 }
 
+/* ESTILIZANDO MENU DE CRIAR EVENTOS */
+
+#menuOrganizacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: white;
+    margin: 10px;
+    padding: 2px;
+    width: 220px;
+    margin-left: auto;
+    border: gray solid 2px;
+    border-radius: 30px;
+}
+
+#menuOrganizacao p {
+    font-size: x-large;
+    font-weight: 800;
+}
+
+.createEvent {
+    width: 40px;
+}
+
+#createEventForm {
+    display: none;
+}
+
 /* ESTILIZANDO MAIN DO DASHBARD QUE CONTÉM TODOS OS EVENTOS */
 
 h1 {
@@ -151,7 +180,7 @@ h1 {
 }
 
 .main-title {
-    padding: 20px;
+    padding: 0px 20px 20px 20px;
 }
 
 #allEvents {

@@ -111,14 +111,85 @@ export const orgDashboard = () => {
         body.style.pointerEvents = 'auto';
     };
 
-    // MAIN COM TODOS OS EVENTOS
+    // MAIN COM TODOS OS EVENTOS E SUAS FUNÇÕES
     const main = document.createElement('main');
     main.innerHTML = `
+    <button id="menuOrganizacao">
+        <p>Criar Evento</p><img class="createEvent" src="./assets/content/add.png" alt="Criar Evento">
+    </button>
+
+    <form id="createEventForm">
+        <div>
+            <label for="title">Título</label>
+            <input id="title" required>
+        </div>
+
+        <div>
+            <label for="bannerSrc">Banner</label>
+            <input type="file" id="bannerSrc" required>
+        </div>
+
+        <div>
+            <label for="category">Tipo de evento realizado</label>
+            <select id="category" required>
+                <option value="" disabled selected hidden>Selecione:</option>
+                <option value="Show">Show</option>
+                <option value="Reunião">Reunião</option>
+                <option value="WorkShop">WorkShop</option>
+                <option value="Festival">Festival</option>
+                <option value="Feira">Feira</option>
+                <option value="Desfile">Desfile</option>
+                <option value="Conferência">Conferência</option>
+                <option value="Seminário">Seminário</option>
+                <option value="Treinamento">Treinamento</option>
+                <option value="Torneio">Torneio</option>
+                <option value="Outro">Outro</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="description">Descrição</label>
+            <input id="description" required>
+        </div>
+
+        <div>
+            <label for="location">Local</label>
+            <input id="location" required>
+        </div>
+
+        <div>
+            <label for="date">Data</label>
+            <input id="date" placeholder="25 de março" required>
+        </div>
+
+        <div>
+            <label for="time">Horário</label>
+            <input id="time" placeholder="10:30" required>
+        </div>
+
+        <div>
+            <label for="link">Link dos ingressos</label>
+            <input id="link" required>
+        </div>
+
+        <button type="submit" id="submit">Confirmar</button>
+    </form>
+
     <h1 class="main-title">Eventos</h1>
     
     <div id="allEvents"></div>
     `;
     body.appendChild(main);
+
+    document.getElementById('menuOrganizacao').onclick = () => {
+        const createEventForm = document.getElementById('createEventForm');
+
+        if (createEventForm.style.display == 'none') {
+            createEventForm.style.display == 'flex';
+        } else {
+            createEventForm.style.display == 'none';
+        }
+    };
 
     getAllEvents().then(events => {
         events.reverse();

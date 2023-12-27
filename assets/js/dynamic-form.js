@@ -68,7 +68,7 @@ export const userSignUpForm = () => {
             getAllUsers().then(users => {
                 if (users.find(user => user.username == myUsername) == undefined) {
                     if (users.find(user => user.email == myEmail) == undefined) {
-                        alert('Sucesso! A página será recarregada, após isso entre com nome de usuário ou email e senha.');
+                        alert('Sucesso! A página será recarregada, após isso entre com nome de usuário e senha.');
 
                         createUser(myUser);
                     } else {
@@ -88,8 +88,8 @@ export const userLogInForm = () => {
     formulario.innerHTML = 
     `
     <div>
-        <label for="userOrEmail">Nome de usuário ou Email</label>
-        <input type="text" id="userOrEmail" required>
+        <label for="user">Nome de usuário</label>
+        <input type="text" id="user" required>
     </div>
 
     <div>
@@ -101,28 +101,19 @@ export const userLogInForm = () => {
     `;
     getAllUsers().then(users => {
         document.getElementById('submit').onclick= () => {
-            let userOrEmail = document.getElementById('userOrEmail').value;
+            let simpleUser = document.getElementById('user').value;
             let password = document.getElementById('password').value;
 
-            userOrEmail = userOrEmail.trim();
+            simpleUser = simpleUser.trim();
             password = password.trim();
 
-            if (userOrEmail !== '' && password !== '') {
-                if (users.find(user => user.username == userOrEmail) !== undefined) {
-                    const user = users.find(user => user.username == userOrEmail);
+            if (simpleUser !== '' && password !== '') {
+                if (users.find(user => user.username == simpleUser) !== undefined) {
+                    const user = users.find(user => user.username == simpleUser);
 
                     if (user.password == password) {
                         localStorage.setItem('userType','simple user');
                         localStorage.setItem('user',`${JSON.stringify(user)}`);
-                    } else {
-                        userEmailOrPasswordIncorrect();
-                    }
-                } else if (users.find(user => user.email == userOrEmail) !== undefined) {
-                    const user = users.find(user => user.email == userOrEmail);
-
-                    if (user.password == password) {
-                        localStorage.setItem('userType','simple user');
-                        localStorage.setItem('id',`${user.id}`);
                     } else {
                         userEmailOrPasswordIncorrect();
                     }
@@ -214,7 +205,7 @@ export const organizationSignUpForm = () => {
             getAllOrganizations().then(orgs => {
                 if (orgs.find(org => org.username == myUsername) == undefined) {
                     if (orgs.find(org => org.email == myEmail) == undefined) {
-                        alert('Sucesso! A página será recarregada, após isso entre com seu nome de usuário ou email e senha.');
+                        alert('Sucesso! A página será recarregada, após isso entre com seu nome de usuário e senha.');
 
                         createOrganization(myOrganization);
                     } else {
@@ -234,8 +225,8 @@ export const organizationLogInForm = () => {
     formulario.innerHTML = 
     `
     <div>
-        <label for="userOrEmail">Nome de usuário de organização ou Email</label>
-        <input type="text" id="userOrEmail" required>
+        <label for="orgUser">Nome de usuário de organização</label>
+        <input type="text" id="orgUser" required>
     </div>
 
     <div>
@@ -247,28 +238,19 @@ export const organizationLogInForm = () => {
     `;
     getAllOrganizations().then(orgs => {
         document.getElementById('submit').onclick = () => {
-            let userOrEmail = document.getElementById('userOrEmail').value;
+            let organizationUsername = document.getElementById('orgUser').value;
             let password = document.getElementById('password').value;
 
-            userOrEmail = userOrEmail.trim();
+            organizationUsername = organizationUsername.trim();
             password = password.trim();
 
-            if (userOrEmail !== '' && password !== '') {
-                if (orgs.find(org => org.username == userOrEmail) !== undefined) {
-                    const orgUser = orgs.find(org => org.username == userOrEmail);
+            if (organizationUsername !== '' && password !== '') {
+                if (orgs.find(org => org.username == organizationUsername) !== undefined) {
+                    const orgUser = orgs.find(org => org.username == organizationUsername);
 
                     if (orgUser.password == password) {
                         localStorage.setItem('userType','organization');
                         localStorage.setItem('orgUser',`${JSON.stringify(orgUser)}`);
-                    } else {
-                        userEmailOrPasswordIncorrect();
-                    }
-                } else if (orgs.find(org => org.email == userOrEmail) !== undefined) {
-                    const orgUser = orgs.find(org => org.email == userOrEmail);
-
-                    if (orgUser.password == password) {
-                        localStorage.setItem('userType','organization');
-                        localStorage.setItem('id',`${orgUser.id}`);
                     } else {
                         userEmailOrPasswordIncorrect();
                     }
