@@ -23,6 +23,7 @@ export const userDashboard = () => {
                 <span>Sobrenome  <p>${user.surname}</p></span>
                 <span>Email  <p>${user.email}</p></span>
                 <span>Idade  <p>${user.age}</p></span>
+                <button id="closeUser">Deslogar</button>
             </div>
         </div>
     </nav>
@@ -39,6 +40,10 @@ export const userDashboard = () => {
     document.getElementById('closeModal').onclick = () => {
         navModal.style.display = 'none';
         body.style.pointerEvents = 'auto';
+    };
+    document.getElementById('closeUser').onclick = () => {
+        localStorage.clear();
+        location.reload();
     };
 
     // MAIN COM TODOS OS EVENTOS
@@ -92,6 +97,7 @@ export const orgDashboard = () => {
                 <span>Email  <p>${orgUser.email}</p></span>
                 <span>Categoria  <p>${orgUser.eventType}</p></span>
                 <span>Localização  <p>${orgUser.location}</p></span>
+                <button id="closeUser">Deslogar</button>
             </div>
         </div>
     </nav>
@@ -108,6 +114,10 @@ export const orgDashboard = () => {
     document.getElementById('closeModal').onclick = () => {
         navModal.style.display = 'none';
         body.style.pointerEvents = 'auto';
+    };
+    document.getElementById('closeUser').onclick = () => {
+        localStorage.clear();
+        location.reload();
     };
 
     // MAIN COM TODOS OS EVENTOS E SUAS FUNÇÕES
