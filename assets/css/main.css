@@ -264,3 +264,20 @@ h1 {
 .updateEventForm img {
     width: 22px;
 }
+
+/* FAZENDO RESPONSIVIDADE DO FORMULÁRIO DE ATUALIZAR EVENTOS */
+
+@media screen and (max-height: 935px) {
+    .updateEventForm {
+        top: 20px;
+        width: 480px;
+        padding: 5px;
+        gap: 5px;
+        top: 5px;
+    }
+
+    .updateEventForm input {
+        height: 20px;
+        padding: 5px;
+    }
+}
